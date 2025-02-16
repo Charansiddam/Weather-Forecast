@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link href="./output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .forecast-card {
+            background-color: #f7f2f8;
+            /* Light background */
+            color: #374151;
+            /* Dark text */
+            border-radius: 0.375rem;
+            /* Rounded corners */
+            padding: 0.75rem;
+            /* Padding */
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1rem;
+            /* Add margin bottom for small screens */
+            border: 1px solid #e5e7eb;
+        }
+
+        @media (min-width: 640px) {
+            .forecast-container {
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .forecast-card {
+                margin-bottom: 0;
+                /* Remove margin for larger screens */
+            }
+        }
+
+      
+
+
+        .weather-icon {
+            font-size: 2rem;
+            /* Adjust size as needed */
+            color: #4a5568;
+            /* Dark gray color */
+        }
+
+        .wi {
+            font-size: 3em;
+            color: #4a5568;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200 font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Weather Dashboard</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="md:col-span-1">
+                <div class="mb-4">
+                    <label for="cityInput" class="block text-gray-700 text-sm font-bold mb-2">Enter a City
+                        Name</label>
+                    <input type="text" id="cityInput" placeholder="E.g., Delhi, London, Tokyo"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <button id="searchButton"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Search
+                </button>
+                <div class="my-4">
+                    <div class="text-center text-gray-500">or</div>
+                </div>
+                <button id="currentLocationButton"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                    Use Current Location
+                </button>
+
+                <div id="recentCities" class="mt-4 hidden">
+                    <label for="recent-cities-dropdown"
+                        class="block text-gray-700 text-sm font-bold mb-2">Recent Cities</label>
+                    <select id="recent-cities-dropdown"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="">Select a recent city</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="weatherInfo" class="md:col-span-2 p-4 rounded-md shadow-md hidden">
+                <h2 id="location" class="text-2xl font-semibold mb-2 text-gray-800"></h2>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-700">Temperature: <span id="temperature"
+                                class="font-medium"></span></p>
+                        <p class="text-gray-700">Wind: <span id="windSpeed" class="font-medium"></span></p>
+                        <p class="text-gray-700">Humidity: <span id="humidity" class="font-medium"></span></p>
+                    </div>
+                    <div class="text-center">
+                        <i id="weatherIcon" class="weather-icon"></i>
+                        <p id="description" class="text-sm text-gray-600"></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="md:col-span-3">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">5-Day Forecast</h2>
+                <div id="forecastContainer" class="forecast-container">
+                    <!-- Forecast cards will be added here -->
+                </div>
+            </div>
+        </div>
+        <div id="errorMessage" class="text-red-500 hidden mt-4 text-center"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
